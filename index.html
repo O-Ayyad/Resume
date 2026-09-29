@@ -1,12 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Your Name - Software Developer</title>
+<title>Omar Ayyad - Software Developer</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
 <meta name="description" content="Computer science student at Kennesaw State University. I build things from the operating system up: a bootable chess OS, a production inventory app, and a full-stack web project.">
 <style>
-
+ 
   :root {
     --paper: #f6f3ec;
     --card: #fbfaf6;
@@ -16,16 +18,17 @@
     --line: #dcd6c9;
     --accent: #2f5d8a;
     --accent-dark: #1f4266;
-    --page-width: 760px;
+    --content-width: 760px;
+    --side-width: 300px;
     --serif: "Iowan Old Style", "Charter", "Georgia", "Times New Roman", serif;
     --sans: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     --mono: ui-monospace, "SF Mono", Consolas, "Liberation Mono", monospace;
   }
-
+ 
   * { box-sizing: border-box; }
-
+ 
   html { scroll-behavior: smooth; }
-
+ 
   body {
     margin: 0;
     color: var(--ink);
@@ -35,67 +38,93 @@
     background-color: var(--paper);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45  0 0 0 0 0.40  0 0 0 0 0.32  0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
-
+ 
   a {
     color: var(--accent);
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 3px;
   }
-
+ 
   a:hover { color: var(--accent-dark); text-decoration-thickness: 2px; }
-
+ 
   .page {
-    max-width: var(--page-width);
+    max-width: calc(var(--side-width) + 56px + var(--content-width) + 48px);
     margin: 0 auto;
-    padding: 0 16px;
+    padding: 0 24px;
   }
-
+ 
+  .row {
+    display: grid;
+    grid-template-columns: var(--side-width) minmax(0, 1fr);
+    gap: 0 56px;
+  }
+ 
+  .row > .content { max-width: var(--content-width); }
+ 
+  .row > .side {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+ 
+  section.row > .side,
+  section.row > .content { padding: 48px 0; }
+ 
+  section.row > .content { border-top: 1px solid var(--line); }
+ 
+  .intro > .side,
+  .intro > .content { padding: 88px 0 56px; }
+ 
+  .avatar {
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    object-fit: cover;
+    transform: translateX(-100px);
+  }
+ 
+  .side-img {
+    width: 300px;
+    border-radius:20px;
+  }
+ 
   h1, h2, h3 {
     font-family: var(--serif);
     font-weight: 600;
     line-height: 1.25;
     color: var(--ink);
   }
-
+ 
   h2 {
     font-size: 26px;
     margin: 0 0 20px;
   }
-
+ 
   h3 {
     font-size: 20px;
     margin: 0;
   }
-
-  section {
-    padding: 48px 0;
-    border-top: 1px solid var(--line);
-  }
-
+ 
   p { margin: 0 0 14px; }
-
-  .intro {
-    padding: 88px 0 56px;
-  }
-
+ 
   .intro h1 {
     font-size: 46px;
     margin: 0 0 6px;
     letter-spacing: -0.5px;
   }
-
+ 
   .role {
     font-size: 19px;
     color: var(--ink-soft);
     margin: 0 0 24px;
   }
-
+ 
   .intro .summary {
     font-size: 19px;
     max-width: 620px;
   }
-
+ 
   .links {
     list-style: none;
     padding: 0;
@@ -105,9 +134,9 @@
     gap: 10px 22px;
     font-size: 16px;
   }
-
+ 
   .links a { font-weight: 500; }
-
+ 
   .project {
     background: var(--card);
     border: 1px solid var(--line);
@@ -115,7 +144,7 @@
     padding: 24px 26px;
     margin-bottom: 20px;
   }
-
+ 
   .project-head {
     display: flex;
     justify-content: space-between;
@@ -124,20 +153,20 @@
     gap: 4px 16px;
     margin-bottom: 8px;
   }
-
+ 
   .project-kind {
     font-size: 14px;
     color: var(--ink-faint);
   }
-
+ 
   .project ul {
     margin: 0 0 14px;
     padding-left: 20px;
     color: var(--ink-soft);
   }
-
+ 
   .project li { margin-bottom: 4px; }
-
+ 
   .project .tags {
     display: flex;
     flex-wrap: wrap;
@@ -146,7 +175,7 @@
     padding: 0;
     list-style: none;
   }
-
+ 
   .project .tags li {
     font-family: var(--mono);
     font-size: 13px;
@@ -156,61 +185,106 @@
     padding: 1px 8px;
     background: var(--paper);
   }
-
+ 
   .project-links {
     font-size: 15px;
     display: flex;
     gap: 18px;
     flex-wrap: wrap;
   }
-
+ 
+  #projects > .side,
+  #projects > .content { padding-bottom: 0; }
+ 
+  .project-row {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: var(--side-width) minmax(0, 1fr);
+    gap: 0 56px;
+    align-items: start;
+    margin-bottom: 24px;
+  }
+ 
+  .project-row:last-child { margin-bottom: 48px; }
+ 
+  .project-row > .side {
+    display: flex;
+    justify-content: center;
+  }
+ 
+  .project-row > .project {
+    max-width: var(--content-width);
+    margin-bottom: 0;
+  }
+ 
   .entry {
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 0 16px;
     margin-bottom: 22px;
   }
-
+ 
   .entry .when {
     color: var(--ink-faint);
     font-size: 15px;
     white-space: nowrap;
   }
-
+ 
   .entry .what {
     color: var(--ink-soft);
     grid-column: 1 / -1;
   }
-
+ 
   .entry strong { font-weight: 600; }
-
+ 
   .skills {
     display: grid;
     grid-template-columns: 150px 1fr;
     gap: 10px 20px;
     margin: 0;
   }
-
+ 
   .skills dt {
     font-weight: 600;
     color: var(--ink);
   }
-
+ 
   .skills dd {
     margin: 0;
     color: var(--ink-soft);
   }
-
+ 
   footer {
-    border-top: 1px solid var(--line);
     padding: 28px 0 56px;
     color: var(--ink-faint);
     font-size: 14px;
   }
-
+ 
+  footer .content {
+    border-top: 1px solid var(--line);
+    padding-top: 28px;
+  }
+ 
+  @media (max-width: 1000px) {
+    .row { grid-template-columns: 1fr; }
+    .row > .side:empty { display: none; }
+ 
+    section.row > .side { padding-bottom: 0; }
+    .intro > .side { padding: 56px 0 0; }
+    .intro > .content { padding-top: 24px; }
+ 
+    section.row > .side:not(:empty) { border-top: 1px solid var(--line); }
+    section.row > .side:not(:empty) + .content { border-top: none; padding-top: 24px; }
+ 
+    .avatar { width: 180px; height: 180px; }
+    .side-img { width: 100%; max-width: 420px; }
+ 
+    .project-row { grid-template-columns: 1fr; gap: 16px; }
+    .project-row > .side:empty { display: none; }
+  }
+ 
   @media (max-width: 600px) {
     body { font-size: 16px; }
-    .intro { padding: 56px 0 40px; }
     .intro h1 { font-size: 36px; }
     .intro .summary, .role { font-size: 17px; }
     .project { padding: 20px; }
@@ -218,7 +292,7 @@
     .skills { grid-template-columns: 1fr; gap: 2px; }
     .skills dd { margin-bottom: 10px; }
   }
-
+ 
   @media print {
     body { background: #fff; font-size: 12pt; }
     .project { break-inside: avoid; }
@@ -227,12 +301,14 @@
 </style>
 </head>
 <body>
-
-
-
+ 
 <main class="page">
-
-  <header class="intro">
+ 
+  <header class="intro row">
+    <div class="side">
+      <img src="images/headshot.png" alt="Photo of me" class="avatar">
+    </div>
+    <div class="content">
     <h1>Omar Ayyad</h1>
     <p class="role">Computer Science student &middot; Kennesaw State University &middot; Atlanta, GA</p>
     <p class="summary">I like building software from cloud all the way down to metal. I've written a chess operating
@@ -241,47 +317,66 @@
     <ul class="links">
       <li><a href="https://github.com/O-Ayyad">GitHub</a></li>
       <li><a href="https://www.linkedin.com/in/oayyad">LinkedIn</a></li>
-      <li><a href="mailto:oayyad@proton.me">Email</a></li>
       <li><a href="https://chessos.xyz">ChessOS</a></li>
       <li><a href="https://sixdegrees.lol">SixDegrees.lol</a></li>
     </ul>
+    <ul class="links">
+    <li><a href="mailto:oayyad@proton.me">oayyad@proton.me</a></li>
+    </ul>
+    </div>
   </header>
-
-  <section id="projects">
-    <h2>Projects</h2>
-
+ 
+  <section id="projects" class="row">
+  <div class="side"></div>
+  <div class="content"><h2>Projects</h2></div>
+ 
+  <div class="project-row">
+    <div class="side">
+      <img src="images/chessos.png" alt="ChessOS running in QEMU" class="side-img">
+    </div>
     <article class="project">
       <div class="project-head">
         <h3>ChessOS</h3>
         <span class="project-kind">Operating system &middot; C++ and assembly</span>
       </div>
       <p>A small 64-bit operating system that does one thing: play chess. It boots straight from a
-        USB stick or virtual machine without no Windows or Linux.</p>
+        USB stick or virtual machine without Windows or Linux.</p>
       <ul>
         <li>Own two-stage BIOS boot loader in x86 assembly: A20, memory map, VESA graphics, long mode.</li>
-        <li>Alpha-beta chess engine with a hash table, null-move pruning and a tuned evaluation at roughly 2450 elo</li>
+        <li>Alpha-beta chess engine with a hash table, null-move pruning and a tuned evaluation at roughly 2450 Elo.</li>
       </ul>
       <ul class="tags"><li>C++</li><li>x86-64 assembly</li><li>Python</li><li>QEMU</li></ul>
       <div class="project-links">
-        <a href="https://chessos.xyz">Learn More</a>
+        <a href="https://chessos.xyz">Learn more</a>
       </div>
     </article>
-
+  </div>
+ 
+  <div class="project-row">
+    <div class="side">
+      <img src="images/sixdegrees.png" alt="SixDegrees.lol player connection search" class="side-img">
+    </div>
     <article class="project">
       <div class="project-head">
         <h3>SixDegrees.lol</h3>
-        <span class="project-kind">Full-stack web app &middot; in progress</span>
+        <span class="project-kind">Full-stack web app &middot; live, in active development</span>
       </div>
-      <p>A website that finds how Riot Games players are connected to each other.
+      <p>Finds the shortest chain between any two Riot Games players through shared games, kills and assists, across every region except KR.</p>
       <ul>
+        <li>Indexes players by Riot PUUID, which stays the same across regions and games.</li>
+        <li>Graph built from months of crawling NA, KR, EUW, EUNE, BR and LAN matches, stored in Neo4j.</li>
+        <li>Works within a development API key's rate limits using a Redis-backed seed queue.</li>
       </ul>
-      <ul class="tags"><li>Full-stack</li> <li>Python</li> <li>FastAPI</li> <li>Redis</li> <li>Neo4j</li> <li>HTML/CSS</li> <li>JavaScript</li></ul>
+      <ul class="tags"><li>Python</li><li>FastAPI</li><li>Neo4j</li><li>Redis</li><li>Riot Games API</li><li>JavaScript</li><li>HTML/CSS</li></ul>
       <div class="project-links">
         <a href="https://sixdegrees.lol">Visit the site</a>
       </div>
     </article>
-
-        <article class="project">
+  </div>
+ 
+  <div class="project-row">
+    <div class="side"></div>
+    <article class="project">
       <div class="project-head">
         <h3>Composite Inventory</h3>
         <span class="project-kind">Production app &middot; in daily use</span>
@@ -290,52 +385,64 @@
         on it every day to keep track of their stock.</p>
       <ul>
         <li>I built it and continue to maintain it.</li>
-        <li>It connect to Amazon and Walmart API so users dont need to check twice.</li>
+        <li>It connects to the Amazon and Walmart APIs so users don't need to check twice.</li>
       </ul>
-      <ul class="tags"><li>Java</li> <li>Maven</li></ul>
+      <ul class="tags"><li>Java</li><li>Maven</li></ul>
       <div class="project-links">
         <a href="https://github.com/O-Ayyad/Composite-Inventory">Learn more</a>
       </div>
     </article>
-
+  </div>
   </section>
-
-
-  <section id="education">
-    <h2>Education</h2>
-    <div class="entry">
-      <span><strong>Kennesaw State University</strong></span>
-      <span class="when">Expected Dec 2027</span>
-      <span class="what">B.S. in Computer Science</span>
+ 
+  <section id="education" class="row">
+    <div class="side"></div>
+    <div class="content">
+      <h2>Education</h2>
+      <div class="entry">
+        <span><strong>Kennesaw State University</strong></span>
+        <span class="when">Expected Dec 2027</span>
+        <span class="what">B.S. in Computer Science</span>
+      </div>
     </div>
   </section>
-
-  <section id="skills">
-    <h2>Skills</h2>
-    <dl class="skills">
+ 
+  <section id="skills" class="row">
+    <div class="side"></div>
+    <div class="content">
+      <h2>Skills</h2>
+      <dl class="skills">
       <dt>Languages</dt>
-      <dd>Python, C++, Java, x86-64 assembly, SQL, Cypher HTML &amp; CSS</dd>
-      <dt>Systems</dt>
-      <dd>Boot loaders, memory management, device drivers, bare-metal debugging with QEMU</dd>
+      <dd>Python &middot; C++ &middot; Java &middot; x86-64 assembly &middot; SQL &middot; Cypher &middot; HTML &middot; CSS &middot; JS</dd>
+      <dt>Backend</dt>
+      <dd>FastAPI &middot; REST API integration &middot; Redis &middot; Neo4j &middot; SQL</dd>
       <dt>Web</dt>
-      <dd>JavaScript</dd>
+      <dd>HTML &middot; CSS &middot; JavaScript</dd>
       <dt>Tools</dt>
-      <dd>Git, Linux / WSL, Make</dd>
+      <dd>Git &middot; Linux / WSL &middot; Make &middot; QEMU</dd>
     </dl>
+    </div>
   </section>
-
-
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>The best way to reach me is
-      <a href="mailto:oayyad@proton.me">email</a> or <a href="https://www.linkedin.com/in/oayyad">LinkedIn</a>.</p><
+ 
+ 
+  <section id="contact" class="row">
+    <div class="side"></div>
+    <div class="content">
+      <h2>Contact</h2>
+      <p>The best way to reach me is
+        <a href="mailto:oayyad@proton.me">oayyad@proton.me</a> or <a href="https://www.linkedin.com/in/oayyad">LinkedIn</a>.</p>
+    </div>
   </section>
-
+ 
 </main>
-
-<footer>
-  <div class="page">&copy; 2026 Omar Ayyad </div>
+ 
+<footer class="page">
+  <div class="row">
+    <div class="side"></div>
+    <div class="content">&copy; 2026 Omar Ayyad</div>
+  </div>
 </footer>
-
+ 
 </body>
 </html>
+ 
